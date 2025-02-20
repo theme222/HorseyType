@@ -32,7 +32,7 @@ Input timings is based on the dash threshold.
 
 ### Dash Threshold
 The time in milliseconds set for the dash (-). This is used for being the threshold for dots (.) and dashes (-) in manual input and also being the bases for standard time in semi and automatic inputs.
-> **Standard units of time for morse code**
+> **Standard units of time for morse code** <br>
 > `1 unit` : `dot (.)` <br>
 > `3 units` : `dash (-)` <br>
 > `1 unit` : `time between dots and dashes` <br>
