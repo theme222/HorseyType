@@ -12,7 +12,7 @@ There are two buttons being the primary key (Default is the dot) and the seconda
 * Unity crashes : 2
 
 ## How to use
-1. Clone / Download the git repo to your computer and look for the folder `Builds`.
+1. Clone / Download the git repo to your computer and look for the folder `BuiltGame`.
 2. Run the binary (If you are on Linux) or the executable (If you are on Windows)
 3. This game does not save any data yet so make sure to adjust the values in the settings to your liking.
 
@@ -34,7 +34,7 @@ Input timings is based on the dash threshold.
 ### Dash Threshold
 The time in milliseconds set for the dash (-). This is used for being the threshold for dots (.) and dashes (-) in manual input and also being the bases for standard time in semi and automatic inputs.
 > **Standard units of time for morse code**
-> `1 unit` : `dot (.)` 
+> `1 unit` : `dot (.)`
 > `3 units` : `dash (-)`
 > `1 unit` : `time between dots and dashes`
 > `3 units` : `time between characters`
