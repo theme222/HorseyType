@@ -1,5 +1,4 @@
 # HORSEYTYPE
----
 > A morse code typing game in the style of monkeytype made in unity.
 
 ## ABOUT
@@ -34,13 +33,13 @@ Input timings is based on the dash threshold.
 ### Dash Threshold
 The time in milliseconds set for the dash (-). This is used for being the threshold for dots (.) and dashes (-) in manual input and also being the bases for standard time in semi and automatic inputs.
 > **Standard units of time for morse code**
-> `1 unit` : `dot (.)`
-> `3 units` : `dash (-)`
-> `1 unit` : `time between dots and dashes`
-> `3 units` : `time between characters`
-> `7 units` : `time between words`
-> **semi mode** uses the dot and dash
-> **auto mode** uses the dot, dash and the time between dots and dashes
+> `1 unit` : `dot (.)` <br>
+> `3 units` : `dash (-)` <br>
+> `1 unit` : `time between dots and dashes` <br>
+> `3 units` : `time between characters` <br>
+> `7 units` : `time between words` <br>
+> **semi mode** uses the dot and dash <br>
+> **auto mode** uses the dot, dash and the time between dots and dashes <br>
 
 ### Primary Key
 The primary key is used for the main keying for manual input and used for dots (.) in semi and auto modes.
