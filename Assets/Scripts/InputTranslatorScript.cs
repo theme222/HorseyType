@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,105 +9,96 @@ using TMPro;
 public class InputTranslatorScript : MonoBehaviour
 {
     public InputDetectorScript InputDetector;
+    public ColorManagerScript GameColor;
     public PassageHandlerScript PassageHandler;
-    public int longPressInterval; // Milliseconds
+    public SettingsManagerScript Settings;
     public TextMeshProUGUI currentInputText;
+    int longPressInterval; // Milliseconds
     public string currentInput;
-    int currentStartTime;
-    
-    Dictionary<string, char> morseDictionary = new Dictionary<string, char>
+    string mode;
+
+    Dictionary<char, string> alphabetToMorse = new Dictionary<char, string>
         {
-            { ".-", 'A' },
-            { "-...", 'B' },
-            { "-.-.", 'C' },
-            { "-..", 'D' },
-            { ".", 'E' },
-            { "..-.", 'F' },
-            { "--.", 'G' },
-            { "....", 'H' },
-            { "..", 'I' },
-            { ".---", 'J' },
-            { "-.-", 'K' },
-            { ".-..", 'L' },
-            { "--", 'M' },
-            { "-.", 'N' },
-            { "---", 'O' },
-            { ".--.", 'P' },
-            { "--.-", 'Q' },
-            { ".-.", 'R' },
-            { "...", 'S' },
-            { "-", 'T' },
-            { "..-", 'U' },
-            { "...-", 'V' },
-            { ".--", 'W' },
-            { "-..-", 'X' },
-            { "-.--", 'Y' },
-            { "--..", 'Z' },
-            { "-----", '0' },
-            { ".----", '1' },
-            { "..---", '2' },
-            { "...--", '3' },
-            { "....-", '4' },
-            { ".....", '5' },
-            { "-....", '6' },
-            { "--...", '7' },
-            { "---..", '8' },
-            { "----.", '9' }
+            { 'A', ".-" },
+            { 'B', "-..." },
+            { 'C', "-.-." },
+            { 'D', "-.." },
+            { 'E', "." },
+            { 'F', "..-." },
+            { 'G', "--." },
+            { 'H', "...." },
+            { 'I', ".." },
+            { 'J', ".---" },
+            { 'K', "-.-" },
+            { 'L', ".-.." },
+            { 'M', "--" },
+            { 'N', "-." },
+            { 'O', "---" },
+            { 'P', ".--." },
+            { 'Q', "--.-" },
+            { 'R', ".-." },
+            { 'S', "..." },
+            { 'T', "-" },
+            { 'U', "..-" },
+            { 'V', "...-" },
+            { 'W', ".--" },
+            { 'X', "-..-" },
+            { 'Y', "-.--" },
+            { 'Z', "--.." },
+            { '0', "-----" },
+            { '1', ".----" },
+            { '2', "..---" },
+            { '3', "...--" },
+            { '4', "....-" },
+            { '5', "....." },
+            { '6', "-...." },
+            { '7', "--..." },
+            { '8', "---.." },
+            { '9', "----." }
         }; // I don't wanna hear it
 
-    int GetCurrentTimeMilli() 
-    {
-        return (int)Mathf.Round(Time.time * 1000);
-    }
 
     void Awake()
     {
-        InputDetector.OnKeyChange.AddListener(Transcript);
+        Settings.OnSettingsChange.AddListener(SettingsListener);
+        InputDetector.OnMorseAdded.AddListener(MistakeCheck);
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        currentInputText.color = GameColor.accent;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("space") && currentInput != "")
-        {
-            Translate();
-            currentInput = "";
-            currentInputText.text = currentInput;
 
-        }
     }
 
-    void Transcript(bool pressingKey)
+    void MistakeCheck()
     {
-        if (pressingKey)
-        {
-            currentStartTime = GetCurrentTimeMilli();
-            return;
-        } 
-        
-        int timeDiff = GetCurrentTimeMilli() - currentStartTime;
-        if (timeDiff < longPressInterval) currentInput += ".";
-        else currentInput += "-";
-        currentInputText.text = currentInput;
-
+        string correctMorse = alphabetToMorse[Char.ToUpper(PassageHandler.currentCharacter)];
+        if (currentInputText.text.Length > correctMorse.Length) PunishMistake();
+        if (currentInputText.text != correctMorse[..currentInputText.text.Length]) PunishMistake();
+        if (currentInputText.text == correctMorse) DoSuccess();
     }
 
-    void Translate()
+    void PunishMistake()
     {
-        if (morseDictionary.ContainsKey(currentInput)) TypeCheck(morseDictionary[currentInput]);
-        else TypeCheck('!');
+        currentInputText.text = "";
     }
 
-    void TypeCheck(char morseInput)
+    void DoSuccess()
     {
-        print(morseInput);
-        if (char.ToUpper(PassageHandler.currentCharacter) == char.ToUpper(morseInput)) PassageHandler.MoveText();
+        currentInputText.text = "";
+        PassageHandler.MoveText();
     }
 
+    void SettingsListener()
+    {
+        longPressInterval = Settings.currentDashThreshold;
+        mode = Settings.currentMode.ToString();
+    }
 
 }

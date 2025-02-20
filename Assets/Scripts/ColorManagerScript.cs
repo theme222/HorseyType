@@ -6,10 +6,10 @@ using UnityEngine.Events;
 public class ColorManagerScript : MonoBehaviour
 {
     public UnityEvent OnThemeChange;
-    public Color backgroundColor;
-    public Color accentColor;
-    public Color primaryColor;
-    public Color secondaryColor;
+    public Color background;
+    public Color accent;
+    public Color primary;
+    public Color secondary;
     public static Color HexToColor(string hex)  // Untested ChatGPT Code Part 2 : Electric Boogaloo
     {
         // Remove the "#" if present
@@ -40,10 +40,33 @@ public class ColorManagerScript : MonoBehaviour
 
     void Awake()
     {
-        backgroundColor = HexToColor("#4a5b6e");
-        accentColor = HexToColor("#f8cdc6");
-        primaryColor = HexToColor("#9ec1cc");
-        secondaryColor = HexToColor("#f5efee");
+        background = HexToColor("#4a5b6e");
+        accent = HexToColor("#f8cdc6");
+        primary = HexToColor("#f5efee");
+        secondary = HexToColor("#9ec1cc");
+    }
+
+    void Start()
+    {
+        OnThemeChange.Invoke();
+    }
+
+    public Color GetColor(string colorType)
+    {
+        switch (colorType)
+        {
+            case "background":
+                return background;
+            case "accent":
+                return accent;
+            case "primary":
+                return primary;
+            case "secondary":
+                return secondary;
+            case "shadow":
+                return background - new Color(0.1f,0.1f,0.1f,0);
+        }
+        return new Color(0,0,0);
     }
 
 }

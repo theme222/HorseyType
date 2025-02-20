@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions; // HEHEHEHHEHEHEHEHHE
 using UnityEngine;
 using UnityEngine.Networking;
-using System.Text.RegularExpressions; // HEHEHEHHEHEHEHEHHE
 using TMPro;
 
 public class PassageHandlerScript : MonoBehaviour
@@ -49,8 +49,8 @@ public class PassageHandlerScript : MonoBehaviour
             currentCharacterObjects[i] = GameObject.Instantiate(textCharacterPrefab);
             currentCharacterObjects[i].transform.SetParent(transform);
             currentCharacterObjects[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(-characterSize * characterCenterIndex + characterSize * i, 0);
-            if (i < characterCenterIndex) currentCharacterObjects[i].GetComponent<TextMeshProUGUI>().color = GameColor.secondaryColor;
-            else currentCharacterObjects[i].GetComponent<TextMeshProUGUI>().color = GameColor.primaryColor;
+            if (i < characterCenterIndex) currentCharacterObjects[i].GetComponent<TextMeshProUGUI>().color = GameColor.primary;
+            else currentCharacterObjects[i].GetComponent<TextMeshProUGUI>().color = GameColor.secondary;
         }
     }
 
