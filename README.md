@@ -1,9 +1,12 @@
-# HORSEYTYPE
+# HorseyType
 > A morse code typing game in the style of monkeytype made in unity.
 
-## ABOUT
+![Start Screen](https://github.com/theme222/HorseyType/blob/master/Images/Screenshot%20from%202025-02-21%2015-56-21.png?raw=true)
+
+## About
+
 `Unity version 2022.3.18f1` <br>
-`Quotes from` [thequoteshub](https://thequoteshub.com/api/) <br>
+`Quotes from` [thequoteshub](https://thequoteshub.com/api/) (This does contain explicit quotes from horny old bastards weirdly enough)<br>
 
 This is used for personally learning morse code for myself. I might push this to Itch.io some day in the next century.
 There are two buttons being the primary key (Default is the dot) and the secondary key (Default is the slash). 
@@ -18,7 +21,11 @@ There are two buttons being the primary key (Default is the dot) and the seconda
 3. This game does not save any data yet so make sure to adjust the values in the settings to your liking.
 
 ## Settings
+
+![Settings Screen](https://github.com/theme222/HorseyType/blob/master/Images/Screenshot%20from%202025-02-21%2015-58-38.png?raw=true)
+
 These can be configured in game and currently do not save.
+
 ### Modes
 There are currently three modes to input morse code.
 - **Manual Input** : `manual`
@@ -48,3 +55,9 @@ The primary key is used for the main keying for manual input and used for dots (
 
 ### Secondary Key
 The secondary key is used for dashes (-) in semi and auto modes while it has the same function as the primary key in manual mode.
+
+## Gameplay
+
+![Gameplay](https://github.com/theme222/HorseyType/blob/master/Images/Screenshot%20from%202025-02-21%2015-58-19.png?raw=true)
+
+Type the correct morse code based on the characters on the screen. If the combination was incorrect the keyed morse will clear. There is no WPM  (words per minute) or CPM (characters per minute) counter and finishing a qoute will reset the counter and display a new qoute.
