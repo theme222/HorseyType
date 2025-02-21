@@ -6,10 +6,15 @@ using UnityEngine.Events;
 public class ColorManagerScript : MonoBehaviour
 {
     public UnityEvent OnThemeChange;
+
+    // For backwards compatibility only use GetColor() instead for more colors //
     public Color background;
     public Color accent;
     public Color primary;
     public Color secondary;
+    // For backwards compatibility only use GetColor() instead for more colors //
+    static Color error;
+
     public static Color HexToColor(string hex)  // Untested ChatGPT Code Part 2 : Electric Boogaloo
     {
         // Remove the "#" if present
@@ -44,6 +49,7 @@ public class ColorManagerScript : MonoBehaviour
         accent = HexToColor("#f8cdc6");
         primary = HexToColor("#f5efee");
         secondary = HexToColor("#9ec1cc");
+        error = HexToColor("#EE4B2B");
     }
 
     void Start()
@@ -63,6 +69,8 @@ public class ColorManagerScript : MonoBehaviour
                 return primary;
             case "secondary":
                 return secondary;
+            case "error":
+                return error;
             case "shadow":
                 return background - new Color(0.1f,0.1f,0.1f,0);
         }

@@ -87,12 +87,16 @@ public class InputTranslatorScript : MonoBehaviour
     void PunishMistake()
     {
         currentInputText.text = "";
+        TextMeshProUGUI centerText = PassageHandler.currentCharacterObjects[PassageHandler.characterCenterIndex].GetComponent<TextMeshProUGUI>();
+        centerText.color = GameColor.GetColor("error");
     }
 
     void DoSuccess()
     {
         currentInputText.text = "";
         PassageHandler.MoveText();
+        TextMeshProUGUI centerText = PassageHandler.currentCharacterObjects[PassageHandler.characterCenterIndex].GetComponent<TextMeshProUGUI>();
+        centerText.color = GameColor.GetColor("secondary"); // Just incase the script change the color because of a mistake
     }
 
     void SettingsListener()

@@ -9,18 +9,21 @@ public class PassageHandlerScript : MonoBehaviour
 {
     public ColorManagerScript GameColor;
     public GameObject textCharacterPrefab;
+    public TextMeshProUGUI characterCounterText;
     public Passage currentPassage;
     public char currentCharacter = ' ';
+
 
     [System.NonSerialized]
     public GameObject[] currentCharacterObjects = new GameObject[characterAmount];
     [System.NonSerialized]
     public int indexInPassage;
+    [System.NonSerialized]
+    public int characterCenterIndex = (int)(characterAmount/2);
     
     string API_LINK = "https://thequoteshub.com/api/";
     
     static int characterAmount = 31;
-    static int characterCenterIndex = (int)(characterAmount/2);
     static int characterSize = 70;
 
 
@@ -56,6 +59,7 @@ public class PassageHandlerScript : MonoBehaviour
 
     public void MoveText()
     {
+        characterCounterText.text = (indexInPassage+characterCenterIndex+ 1).ToString() + " / " + currentPassage.text.Length.ToString();
         indexInPassage++;
         if (indexInPassage + characterCenterIndex >= currentPassage.text.Length)
         {
